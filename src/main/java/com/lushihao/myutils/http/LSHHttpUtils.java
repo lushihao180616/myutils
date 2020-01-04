@@ -197,6 +197,9 @@ public final class LSHHttpUtils {
                 String value = (entry.getValue() != null) ? (String.valueOf(entry.getValue())) : "";
                 paramsStr.append(entry.getKey() + "=" + value + "&");
             }
+            if (paramsStr != null && paramsStr.toString() != "") {
+                paramsStr = new StringBuilder(paramsStr.toString().substring(0, paramsStr.length() - 2));
+            }
             //只有POST方法才能通过OutputStream(即form的形式)提交参数
             if (method != HttpMethod.POST) {
                 url += "?" + paramsStr.toString();
