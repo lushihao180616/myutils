@@ -1,12 +1,34 @@
 package com.lushihao.myutils.json;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 
 import java.util.List;
 import java.util.Map;
 
 public final class LSHJsonUtils {
+
+    /**
+     * 字符串转JSONObject
+     *
+     * @param str
+     * @return
+     */
+    public static JSONObject string2JsonObj(String str) {
+        return JSONObject.parseObject(str);
+    }
+
+    /**
+     * 字符串转JSONArray
+     *
+     * @param str
+     * @return
+     */
+    public static JSONArray string2JsonArr(String str) {
+        return JSONArray.parseArray(str);
+    }
 
     /**
      * 功能描述：把java对象转换成JSON数据
