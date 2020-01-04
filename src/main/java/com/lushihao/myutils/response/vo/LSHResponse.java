@@ -6,7 +6,7 @@ public class LSHResponse {
     /**
      * 成功/失败
      */
-    private boolean result;
+    private boolean ifSuccess;
     /**
      * 返回数据
      */
@@ -17,23 +17,23 @@ public class LSHResponse {
     private String errMsg;
 
     public LSHResponse(Map<String, Object> bean) {
-        this.result = true;
+        this.ifSuccess = true;
         this.bean = bean;
         this.errMsg = null;
     }
 
     public LSHResponse(String errMsg) {
-        this.result = false;
+        this.ifSuccess = false;
         this.bean = null;
         this.errMsg = errMsg;
     }
 
-    public boolean isResult() {
-        return result;
+    public boolean isIfSuccess() {
+        return ifSuccess;
     }
 
-    public void setResult(boolean result) {
-        this.result = result;
+    public void setIfSuccess(boolean ifSuccess) {
+        this.ifSuccess = ifSuccess;
     }
 
     public Map<String, Object> getBean() {
