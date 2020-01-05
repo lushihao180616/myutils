@@ -52,6 +52,17 @@ public final class LSHJsonUtils {
     }
 
     /**
+     * 功能描述：把JSON数据转换成指定的java对象
+     *
+     * @param jsonData JSON数据
+     * @param clazz    指定的java对象
+     * @return 指定的java对象
+     */
+    public static <T> T json2Bean(JSON jsonData, Class<T> clazz) {
+        return JSON.parseObject(jsonData.toJSONString(), clazz);
+    }
+
+    /**
      * 功能描述：把JSON数据转换成指定的java对象列表
      *
      * @param jsonData JSON数据
@@ -63,6 +74,17 @@ public final class LSHJsonUtils {
     }
 
     /**
+     * 功能描述：把JSON数据转换成指定的java对象列表
+     *
+     * @param jsonData JSON数据
+     * @param clazz    指定的java对象
+     * @return List<T>
+     */
+    public static <T> List<T> json2List(JSON jsonData, Class<T> clazz) {
+        return JSON.parseArray(jsonData.toJSONString(), clazz);
+    }
+
+    /**
      * 功能描述：把JSON数据转换成较为复杂的List<Map<String, Object>>
      *
      * @param jsonData JSON数据
@@ -71,6 +93,19 @@ public final class LSHJsonUtils {
     public static List<Map<String, Object>> json2ListMap(String jsonData) {
         return JSON.parseObject(
                 jsonData, new TypeReference<List<Map<String, Object>>>() {
+                }
+        );
+    }
+
+    /**
+     * 功能描述：把JSON数据转换成较为复杂的List<Map<String, Object>>
+     *
+     * @param jsonData JSON数据
+     * @return List<Map < String, Object>>
+     */
+    public static List<Map<String, Object>> json2ListMap(JSON jsonData) {
+        return JSON.parseObject(
+                jsonData.toJSONString(), new TypeReference<List<Map<String, Object>>>() {
                 }
         );
     }
