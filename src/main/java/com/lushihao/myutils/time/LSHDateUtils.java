@@ -5,6 +5,7 @@ import com.lushihao.myutils.check.LSHCheckUtils;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Year;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -87,6 +88,59 @@ public final class LSHDateUtils {
         }
         Calendar calendar = date2Calendar(date);
         return calendar2Map(calendar);
+    }
+
+    /**
+     * 日期转map
+     */
+    public static Date map2Date(Map<Integer, Integer> map) {
+        if (!LSHCheckUtils.valid(map)) {
+            return null;
+        }
+        Calendar calendar = map2Calendar(map);
+        return calendar.getTime();
+    }
+
+    /**
+     * 日期加
+     * @param date
+     * @param num
+     * @param flag
+     * @return
+     */
+    public static Date dateAdd(Date date, int num, int flag) {
+        Calendar calendar = date2Calendar(date);
+        if (YEAR == flag) {
+            calendar.set(Calendar.YEAR, calendar.get(Calendar.YEAR) + num);
+        }
+        if (MONTH == flag) {
+            calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH) + num);
+        }
+        if (DATE == flag) {
+            calendar.set(Calendar.DATE, calendar.get(Calendar.DATE) + num);
+        }
+        if (HOUR_OF_DAY == flag) {
+            calendar.set(Calendar.HOUR_OF_DAY, calendar.get(Calendar.HOUR_OF_DAY) + num);
+        }
+        if (MINUTE == flag) {
+            calendar.set(Calendar.MINUTE, calendar.get(Calendar.MINUTE) + num);
+        }
+        if (SECOND == flag) {
+            calendar.set(Calendar.SECOND, calendar.get(Calendar.SECOND) + num);
+        }
+        if (DAY_OF_WEEK == flag) {
+            calendar.set(Calendar.DAY_OF_WEEK, calendar.get(Calendar.DAY_OF_WEEK) + num);
+        }
+        if (WEEK_OF_MONTH == flag) {
+            calendar.set(Calendar.WEEK_OF_MONTH, calendar.get(Calendar.WEEK_OF_MONTH) + num);
+        }
+        if (DAY_OF_YEAR == flag) {
+            calendar.set(Calendar.DAY_OF_YEAR, calendar.get(Calendar.DAY_OF_YEAR) + num);
+        }
+        if (WEEK_OF_YEAR == flag) {
+            calendar.set(Calendar.WEEK_OF_YEAR, calendar.get(Calendar.WEEK_OF_YEAR) + num);
+        }
+        return calendar.getTime();
     }
 
     /**
@@ -182,4 +236,49 @@ public final class LSHDateUtils {
         map.put(WEEK_OF_YEAR, calendar.get(Calendar.WEEK_OF_YEAR));
         return map;
     }
+
+    /**
+     * map转Calendar
+     *
+     * @param map
+     * @return
+     */
+    private static Calendar map2Calendar(Map<Integer, Integer> map) {
+        if (!LSHCheckUtils.valid(map)) {
+            return null;
+        }
+        Calendar calendar = Calendar.getInstance();
+        if (map.get(YEAR) != null) {
+            calendar.set(Calendar.YEAR, map.get(YEAR));
+        }
+        if (map.get(MONTH) != null) {
+            calendar.set(Calendar.MONTH, map.get(MONTH) - 1);
+        }
+        if (map.get(DATE) != null) {
+            calendar.set(Calendar.DATE, map.get(DATE));
+        }
+        if (map.get(HOUR_OF_DAY) != null) {
+            calendar.set(Calendar.HOUR_OF_DAY, map.get(HOUR_OF_DAY));
+        }
+        if (map.get(MINUTE) != null) {
+            calendar.set(Calendar.MINUTE, map.get(MINUTE));
+        }
+        if (map.get(SECOND) != null) {
+            calendar.set(Calendar.SECOND, map.get(SECOND));
+        }
+        if (map.get(DAY_OF_WEEK) != null) {
+            calendar.set(Calendar.DAY_OF_WEEK, map.get(DAY_OF_WEEK));
+        }
+        if (map.get(WEEK_OF_MONTH) != null) {
+            calendar.set(Calendar.WEEK_OF_MONTH, map.get(WEEK_OF_MONTH));
+        }
+        if (map.get(DAY_OF_YEAR) != null) {
+            calendar.set(Calendar.DAY_OF_YEAR, map.get(DAY_OF_YEAR));
+        }
+        if (map.get(WEEK_OF_YEAR) != null) {
+            calendar.set(Calendar.WEEK_OF_YEAR, map.get(WEEK_OF_YEAR));
+        }
+        return calendar;
+    }
+
 }
