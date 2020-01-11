@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 
 import java.util.List;
 import java.util.Map;
@@ -37,7 +38,7 @@ public final class LSHJsonUtils {
      * @return JSON数据
      */
     public static String bean2Json(Object object) {
-        return JSON.toJSONString(object);
+        return JSON.toJSONString(object, SerializerFeature.DisableCircularReferenceDetect);
     }
 
     /**
